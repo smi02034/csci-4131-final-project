@@ -1,0 +1,95 @@
+.post {
+    border-radius: 20px;
+    background-color: var(--accent);
+    margin-bottom: 10px;
+}
+
+.post_content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.post_content .post_header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.post_content .post_header .poster_name {
+    color: white;
+    font-weight: bold;
+}
+
+.post_content .post_header .post_actions {
+    color: white;
+    font-weight: bold;
+}
+
+.post_content .post_header .post_actions button {
+    background-color: var(--accent);
+    border: 0px;
+}
+
+.post_content p {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.post_content .footer {
+    display: flex;
+    flex-direction: row;
+    align-self: end;
+}
+
+.post_content .footer .like_button {
+    color: black;
+    background-color: var(--accent);
+    border: 0px;
+}
+
+.post_content .footer .liked {
+    color: red;
+}
+
+.post_content .edit_form {
+    display: none;
+    flex-direction: column;
+}
+
+.post_content .edit_form .save_button {
+    margin-top: 5px;
+    align-self: flex-end;
+}
+
+#post_edit{
+    display: none; 
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    gap: 10px;
+    align-items: flex-start;
+    width: 100%;
+}
+
+#post_edit h3 {
+    padding-left: 10px;
+}
+
+#post_edit div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 90%;
+    justify-content: center;
+    padding: 10px;
+    padding-top: 0px;
+}
+
+#post_edit div textarea {
+    width: 100%;
+    height: 150px;
+}
+
+#post_edit div button {
+    align-self: flex-end;
+}

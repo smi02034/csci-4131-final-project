@@ -1,0 +1,83 @@
+include mixins.pug
+
+doctype html
+html(lang="en")
+    +head("Tea Hall")
+    link(rel="stylesheet", type="text/css", href="/css/home.css")
+    link(rel="stylesheet", type="text/css", href="/css/posts.css")
+
+    script(async, await, src="/js/home.js")
+
+    body 
+        if user.signedin
+            +header("/api/signout", "Sign Out")
+        else
+            +header("/signin", "Sign In")
+
+        .content
+            #feed
+                #view.sticky
+                    h2 Feed
+                    form#tabs(action="/", method="GET")
+                        // Defaults to recent
+                        if order == "top"
+                            button(type="submit", name="order", value="recent") Recent
+                            button.selected(type="submit", name="order", value="top") Top
+                        else
+                            button.selected(type="submit", name="order", value="recent") Recent
+                            button(type="submit", name="order", value="top") Top
+
+                #posts
+                    each post in posts
+                        div(id=post.id, class="post")
+                            .post_content
+                                .post_header
+                                    p.poster_name #{post.poster_name} 
+                                    if user.signedin
+                                        if post.poster_name == user.username
+                                            .post_actions
+                                                button.edit_button.material-symbols-outlined edit
+                                                button.delete_button.material-symbols-outlined delete
+                                
+                                .post_text
+                                    p #{post.content}
+                    
+                                .footer
+                                    p.like_count 
+                                        span #{post.like_count}
+                                        if post.like_count == 1
+                                            span  like
+                                        else
+                                            span  likes
+                                    if user.signedin
+                                        - let liked = liked_posts.includes(post.id);
+                                        if liked
+                                            button.like_button.material-icons.liked favorite 
+                                        else 
+                                            button.like_button.material-symbols-outlined favorite
+                                
+                                if post.poster_name = user.username    
+                                    .edit_form
+                                        p.signin_error Your post is not 417 characters or less, please try again.             
+                                        textarea(name="content") #{post.content}
+                                        button.save_button.action Save Changes
+
+                p#page_selector 
+                    if page_data.page != 1
+                        - let link = `/?order=${order}&page=${parseInt(page_data.page) - 1}` 
+                        a(href=link)#prev_page_button.material-symbols-outlined arrow_back_ios_new
+                    span#curr_page
+                        | Page  
+                        span#page #{page_data.page}
+                        |  of 
+                        span#total_pages #{page_data.total_pages}
+                    if page_data.page != page_data.total_pages
+                        - let link = `/?order=${order}&page=${parseInt(page_data.page) + 1}` 
+                        a(href=link)#next_page_button.material-symbols-outlined arrow_forward_ios
+
+            #info.sticky
+                if user.signedin
+                    +user_info
+                else
+                    +general_info
+            

@@ -1,0 +1,29 @@
+include mixins.pug
+
+doctype html
+html(lang="en")
+    +head("Tea Hall")
+
+    script(async, await, src="/js/signin.js")
+
+    body
+        div#header
+            a(id="title", href="/") Tea Hall
+
+        div.page
+            h3 Sign In
+            .signin_error
+                p Your sign in credentials were not correct. Please try again.
+            form.loginform
+                input(type="text", id="username" name="username")
+                label(for="username") Username
+                br
+                input(type="text", id="password" name="password")
+                label(for="password") Password
+                br
+                input.action(id="signin_button" class="loginbutton" type="button" value="Sign In")
+            br
+            br
+            p Need an account?  
+                a(class="bluelink" href="/signup") Sign up here
+                |. 

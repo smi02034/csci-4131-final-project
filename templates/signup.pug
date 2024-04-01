@@ -1,0 +1,32 @@
+include mixins.pug
+
+doctype html
+html(lang="en")
+    +head("Tea Hall")
+
+    script(async, await, src="/js/signup.js")
+
+    body
+        div(id="header")
+            a(id="title", href="/") Tea Hall
+
+        div(class="page")
+            h3 Sign Up
+            .signin_error 
+                p Account creation failed, please try again. Please make sure your 
+                    | username is less than 24 characters.
+            form.loginform
+                input(type="text", id="username" name="username" required)
+                label(for="username") Username
+                br
+                input(type="text", id="password" name="password" required)
+                label(for="password") Password
+                br
+                input.action(id="signup_button" class="loginbutton" type="button" value="Sign up")
+            br
+            br
+            p Already have an account?  
+                a(class="bluelink" href="/signin") Sign in here
+                |. 
+
+            
